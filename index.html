@@ -26,36 +26,37 @@
 
     <main id="app-container" class="flex-grow">
         <!-- HOME SECTION / HERO -->
-        <!-- Using bg-secondary (light cyan) for the background to show the color variable effect -->
-        <section id="home" class="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8 scroll-animate bg-secondary">
+        <!-- Reduced vertical padding from py-16 md:py-24 to py-12 md:py-20 -->
+        <section id="home" class="py-12 md:py-16 max-w-7xl mx-auto px-6 lg:px-8 bg-secondary-bg">
 
-            <!-- Grid container with responsive ordering -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
-                <!-- Right Content: Animated Circle Graphic with Profile Image (Order 1 on mobile, Order 2 on desktop) -->
+                <!-- Right Content: Animated Circle Graphic with Profile Image -->
                 <div class="order-1 lg:order-2 flex justify-center lg:justify-end mt-10 lg:mt-0">
-                    <!-- The circle container now has p-0 and is just a simple container for the image -->
                     <div
-                        class="circle-bg w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] rounded-full flex items-center justify-center p-0 pulse-animation shadow-2xl">
+                        class="circle-bg w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] rounded-full flex items-center justify-center p-1 pulse-animation shadow-2xl">
 
-                        <!-- Profile Image Element (Now w-full h-full to cover the container) -->
+                        <!-- Profile Image Element - Using the uploaded image as a fallback -->
                         <img src="assets/Profile.jpeg" alt="Profile Image"
-                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/008791/ffffff?text=Amarji+Group+Profile';"
+                            onerror="this.onerror=null;this.src='image_b45348.jpg';"
                             class="w-full h-full rounded-full object-cover border-4 border-white">
-
-                        <!-- The Branding Text previously here has been removed -->
                     </div>
                 </div>
 
-                <!-- Left Content: Text and Button (Order 2 on mobile, Order 1 on desktop) -->
-                <div id="hero-text-content" class="order-2 lg:order-1">
+                <!-- Left Content: Text and Button - ALL ELEMENTS USE SCROLL ANIMATION -->
+                <div class="order-2 lg:order-1">
 
-                    <p class="script-font text-3xl md:text-6xl color-main mb-3">Time To Soar</p>
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold color-main mb-6 leading-tight">
+                    <p class="script-font text-3xl md:text-4xl color-main mb-3 initial-hidden"
+                        style="font-size: 60px; --animation-delay: 0s;">Time To Soar
+                    </p>
+
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold color-main mb-6 leading-tight initial-hidden"
+                        style="--animation-delay: 0.15s;">
                         AmarJi Group
                     </h1>
 
-                    <h2 class="text-2xl font-semibold text-gray-700 mb-6">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-6 initial-hidden"
+                        style="--animation-delay: 0.3s;">
                         We are Professional In
                         <span class="color-main font-bold">Pharmaceutical</span> |
                         <span class="color-main font-bold">Medical Device</span> |
@@ -63,34 +64,33 @@
                         <span class="color-main font-bold">Medical Appliances</span>
                     </h2>
 
-                    <p class="text-gray-600 mb-8 max-w-lg text-base sm:text-lg">
+                    <!-- MAIN BODY PARAGRAPH -->
+                    <p class="text-gray-600 mb-8 max-w-lg text-base sm:text-lg initial-hidden"
+                        style="--animation-delay: 0.45s;">
                         AmarJi Group target is to build a solid company to be one of Iraq's most successful leaders
-                        based on
-                        skilled marketing and promotion teams, modern offices, warehouses and experienced supporting
-                        functions in order to provide the best sales and customer service. therefore, we have focussed
-                        all
-                        of our efforts to provide the Iraqi market with high quality products and significant services
-                        to
-                        meet our customers' needs.
+                        based on skilled marketing and promotion teams, modern offices, warehouses and experienced
+                        supporting functions in order to provide the best sales and customer service. therefore, we have
+                        focussed all of our efforts to provide the Iraqi market with high quality products and
+                        significant services to meet our customers' needs.
                     </p>
 
-                    <!-- Social Media Icons -->
-                    <!-- Social Media (Styled with custom CSS using Boxicons) -->
-                    <div class="social-media flex mb-8">
+                    <!-- Social Media -->
+                    <div class="social-media flex mb-8 initial-hidden" style="--animation-delay: 0.6s;">
                         <a href="#"><i class='bx bxl-facebook'></i></a>
                         <a href="#"><i class='bx bxl-instagram'></i></a>
                         <a href="#"><i class='bx bxl-twitter'></i></a>
                         <a href="#"><i class='bx bxl-youtube'></i></a>
                     </div>
+
                     <!-- Download Button -->
-                    <!-- Using bg-main class -->
                     <button
-                        class="flex items-center space-x-2 px-6 py-3 bg-main text-white font-semibold rounded-full shadow-lg hover:bg-teal-700 transition duration-300 transform hover:scale-[1.02]">
+                        class="flex items-center space-x-2 px-6 py-3 bg-main text-white font-semibold rounded-full shadow-lg hover:bg-teal-700 transition duration-300 transform hover:scale-[1.02] initial-hidden"
+                        style="--animation-delay: 0.75s;">
                         <span>Download Amarji Group Profile</span>
                         <!-- Download Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 0 0 1-2-2v-4" />
                             <polyline points="7 10 12 15 17 10" />
                             <line x1="12" x2="12" y1="15" y2="3" />
                         </svg>
@@ -100,9 +100,22 @@
             </div>
         </section>
 
-        <!-- Placeholder for scroll animation demo - ensures content is below the fold -->
-        <div class="h-96 bg-white shadow-inner"></div>
-        <div class="h-96 bg-white shadow-inner"></div>
+
+
+        <!-- Work Force and Facilities Section (Populated by JavaScript) -->
+        <!-- Reduced vertical padding from py-20 md:py-32 to py-16 md:py-24 -->
+        <section class="py-8 md:py-8 w-full bg-white" id="stats">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-12 color-main initial-hidden"
+                    style="--animation-delay: 0s;">
+                    Work Force and Facilities
+                </h2>
+
+                <!-- Stat Cards are injected here by JavaScript -->
+                <div id="stats-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 lg:gap-24">
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -114,3 +127,11 @@
 </body>
 
 </html>
+
+
+<!-- Spacer content to ensure scrolling is possible -->
+<!-- <div class="h-64 bg-white shadow-inner flex items-center justify-center text-xl font-light text-gray-500">
+            Scroll down to see the animated facilities section
+        </div>
+        <div class="h-64 bg-secondary-bg"></div> -->
+<!-- End Spacer -->

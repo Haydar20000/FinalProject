@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amarji Group</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Fonts: Inter (main) and Great Vibes (script font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <!-- Load Boxicons CDN for social media icons (REQUIRED) -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <script>
+        // Configure Tailwind to use your custom colors/fonts
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'main': '#008791',
+                        'secondary-bg': '#d0f8fb',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        script: ['Great Vibes', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- --- INTEGRATED CUSTOM CSS --- -->
+    <style>
+        /* CSS Variables */
+        :root {
+            --main-color: #008791;
+            --bg-color: #ffffff;
+            --north-zone-fill: #42b7b0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: #333333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Custom Script Font Class */
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Utility classes using the variables */
+        .color-main {
+            color: var(--main-color);
+        }
+
+        .circle-bg {
+            background-color: var(--north-zone-fill);
+        }
+
+        /* Home Section Pulse Animation */
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 135, 145, 0.4), 0 0 0 0 rgba(0, 135, 145, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(0, 135, 145, 0.8), 0 0 0 10px rgba(0, 135, 145, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(0, 135, 145, 0.4), 0 0 0 0 rgba(0, 135, 145, 0.7);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+
+        /* --- Social Media Styling (using Boxicons) --- */
+        .social-media a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            background: transparent;
+            border: 2px solid var(--main-color);
+            border-radius: 50%;
+            margin-right: 1rem;
+            transition: all 0.5s ease;
+            color: var(--main-color);
+            font-size: 1.5rem;
+        }
+
+        .social-media a:hover {
+            background: var(--main-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(0, 135, 145, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* --- Scroll Entrance Animation (Applies to Hero Text and Stat Cards) --- */
+        /* Base state: Hidden and slightly moved down/zoomed out */
+        .initial-hidden {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+        }
+
+        /* Keyframes for the animation effect */
+        @keyframes fade-in-zoom {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .fade-in-up {
+            /* This is the class added by JS to trigger the animation */
+            animation: fade-in-zoom 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            /* Use CSS variable for staggered delay */
+            animation-delay: var(--animation-delay, 0s);
+        }
+
+        /* Stat Card Hover Effect */
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 135, 145, 0.15);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 bg-secondary-bg min-h-screen flex flex-col">
+    <!-- HEADER/NAVIGATION -->
+    <header class="bg-main shadow-lg sticky top-0 z-10 w-full h-16">
+        <div class="max-w-7xl mx-auto h-full flex items-center justify-between px-4 sm:px-6 lg:px-8">
+            <span class="text-white text-2xl font-bold">AMARJI GROUP</span>
+            <nav class="hidden md:block">
+                <a href="#home" class="text-white hover:text-gray-200 mx-3">Home</a>
+                <a href="#stats" class="text-white hover:text-gray-200 mx-3">Facilities</a>
+                <a href="#" class="text-white hover:text-gray-200 mx-3">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="app-container" class="flex-grow">
+        <!-- HOME SECTION / HERO -->
+        <section id="home" class="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8 bg-secondary-bg">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+
+                <!-- Right Content: Animated Circle Graphic with Profile Image -->
+                <div class="order-1 lg:order-2 flex justify-center lg:justify-end mt-10 lg:mt-0">
+                    <div
+                        class="circle-bg w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] rounded-full flex items-center justify-center p-1 pulse-animation shadow-2xl">
+
+                        <!-- Profile Image Element - Using the uploaded image as a fallback -->
+                        <img src="assets/Profile.jpeg" alt="Profile Image"
+                            onerror="this.onerror=null;this.src='image_b45348.jpg';"
+                            class="w-full h-full rounded-full object-cover border-4 border-white">
+                    </div>
+                </div>
+
+                <!-- Left Content: Text and Button - ALL ELEMENTS USE SCROLL ANIMATION -->
+                <div class="order-2 lg:order-1">
+
+                    <p class="script-font text-3xl md:text-4xl color-main mb-3 initial-hidden"
+                        style="font-size: 60px; --animation-delay: 0s;">Time To Soar
+                    </p>
+
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold color-main mb-6 leading-tight initial-hidden"
+                        style="--animation-delay: 0.15s;">
+                        AmarJi Group
+                    </h1>
+
+                    <h2 class="text-lg font-semibold text-gray-700 mb-6 initial-hidden"
+                        style="--animation-delay: 0.3s;">
+                        We are Professional In
+                        <span class="color-main font-bold">Pharmaceutical</span> |
+                        <span class="color-main font-bold">Medical Device</span> |
+                        <span class="color-main font-bold">Cosmetics</span> |
+                        <span class="color-main font-bold">Medical Appliances</span>
+                    </h2>
+
+                    <!-- MAIN BODY PARAGRAPH -->
+                    <p class="text-gray-600 mb-8 max-w-lg text-base sm:text-lg initial-hidden"
+                        style="--animation-delay: 0.45s;">
+                        AmarJi Group target is to build a solid company to be one of Iraq's most successful leaders
+                        based on skilled marketing and promotion teams, modern offices, warehouses and experienced
+                        supporting functions in order to provide the best sales and customer service. therefore, we have
+                        focussed all of our efforts to provide the Iraqi market with high quality products and
+                        significant services to meet our customers' needs.
+                    </p>
+
+                    <!-- Social Media -->
+                    <div class="social-media flex mb-8 initial-hidden" style="--animation-delay: 0.6s;">
+                        <a href="#"><i class='bx bxl-facebook'></i></a>
+                        <a href="#"><i class='bx bxl-instagram'></i></a>
+                        <a href="#"><i class='bx bxl-twitter'></i></a>
+                        <a href="#"><i class='bx bxl-youtube'></i></a>
+                    </div>
+
+                    <!-- Download Button -->
+                    <button
+                        class="flex items-center space-x-2 px-6 py-3 bg-main text-white font-semibold rounded-full shadow-lg hover:bg-teal-700 transition duration-300 transform hover:scale-[1.02] initial-hidden"
+                        style="--animation-delay: 0.75s;">
+                        <span>Download Amarji Group Profile</span>
+                        <!-- Download Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" x2="12" y1="15" y2="3" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Spacer content to ensure scrolling is possible -->
+        <div class="h-64 bg-white shadow-inner flex items-center justify-center text-xl font-light text-gray-500">
+            Scroll down to see the animated facilities section
+        </div>
+        <div class="h-64 bg-secondary-bg"></div>
+        <!-- End Spacer -->
+
+        <!-- Work Force and Facilities Section (Populated by JavaScript) -->
+        <section class="py-20 md:py-32 w-full bg-white" id="stats">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-12 color-main initial-hidden"
+                    style="--animation-delay: 0s;">
+                    Work Force and Facilities
+                </h2>
+
+                <!-- Stat Cards are injected here by JavaScript -->
+                <div id="stats-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 lg:gap-24">
+                </div>
+            </div>
+        </section>
+
+        <!-- Final content area to ensure scroll works -->
+        <div class="h-32 bg-secondary-bg"></div>
+    </main>
+
+    <!-- FOOTER PLACEHOLDER -->
+    <footer class="mt-8 py-4 text-center text-gray-500 text-xs border-t border-gray-200">
+        &copy; 2024 AmarJi Group. All rights reserved.
+    </footer>
+
+    <!-- --- INTEGRATED JAVASCRIPT LOGIC --- -->
+    <script>
+        console.log("✅ Script loaded successfully and running combined logic!");
+
+        // Data for the Work Force and Facilities section
+        const statsData = [
+            {
+                icon: "assets/Icon1.png",
+                value: "2",
+                title: "Country Offices",
+                description: "Strategically located offices to manage operations and client relations across key regions."
+            },
+            {
+                icon: "assets/Icon4.png",
+                value: "47",
+                title: "Trained Staff",
+                description: "Employments included within the following departments: management, business support, commercial, operation and supply chain, HR, IT, Administrative, Finance, Regulatory affairs and QC."
+            },
+            {
+                icon: "assets/Icon3.png",
+                value: "800m²",
+                title: "Chilled Warehouses",
+                description: "Advanced storage facilities maintaining optimal temperatures for sensitive products, ensuring integrity and compliance."
+            },
+            {
+                icon: "assets/Icon2.png",
+                value: "3",
+                title: "Refrigerated Trucks",
+                description: "Dedicated fleet equipped to transport temperature-controlled goods, ensuring cold chain integrity from facility to destination."
+            },
+            {
+                icon: "assets/Icon5.png",
+                value: "Strong",
+                title: "Financial Support",
+                description: "Robust financial backing and stable resources ensure operational continuity and support strategic growth initiatives."
+            },
+            {
+                icon: "assets/Icon6.png",
+                value: "10+",
+                title: "Years Experience",
+                description: "Over a decade of industry expertise, navigating market complexities and delivering consistent results."
+            }
+        ];
+
+        // Function to create a single stat card HTML
+        function createStatCard(stat, index) {
+            // Stagger delay starts after the section header animation
+            const baseDelay = 0.5;
+            const animationDelay = (baseDelay + (index * 0.25)) + 's';
+
+            const randomColor = Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+
+            return `
+                <div 
+                    class="stat-card p-8 sm:p-10 bg-white rounded-xl shadow-lg border border-gray-200 text-center flex flex-col justify-start items-center initial-hidden"
+                    style="--animation-delay: ${animationDelay};"
+                    data-index="${index}"
+                >
+                    <!-- Icon Container: Note the fallback image if assets/IconX.png is not found -->
+                    <div class="rounded-lg mb-6">
+                        <img 
+                            src="${stat.icon}" 
+                            alt="${stat.title} Icon" 
+                            class="w-24 h-24 object-contain mx-auto" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/96x96/${randomColor}/ffffff?text=I';"
+                        >
+                    </div>
+                    <h3 class="value text-3xl sm:text-4xl font-extrabold mb-2" style="color: var(--main-color);">
+                        ${stat.value}
+                    </h3>
+                    <h4 class="title text-lg sm:text-xl font-semibold mb-3 text-gray-800">
+                        ${stat.title}
+                    </h4>
+                    <p class="description text-sm sm:text-md text-gray-600">
+                        ${stat.description}
+                    </p>
+                </div>
+            `;
+        }
+
+
+        // Function to render all stat cards and set up the single Intersection Observer
+        function setupScrollAnimations() {
+            const statsGrid = document.getElementById('stats-grid');
+            if (statsGrid) {
+                // 1. Populate the grid with the generated HTML
+                statsGrid.innerHTML = statsData.map(createStatCard).join('');
+
+                // 2. --- Intersection Observer Logic ---
+                const observerOptions = {
+                    root: null, // relative to the viewport
+                    rootMargin: '0px',
+                    threshold: 0.2 // Trigger when 20% of item is visible
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Run animation when entering viewport
+                            entry.target.classList.remove('initial-hidden');
+                            entry.target.classList.add('fade-in-up');
+                        } else {
+                            // Reset state when exiting viewport (Allows animation to re-run on scroll back)
+                            // This ensures the animation plays every time the user scrolls back to the section
+                            entry.target.classList.remove('fade-in-up');
+                            entry.target.classList.add('initial-hidden');
+                        }
+                    });
+                }, observerOptions);
+
+                // 3. Apply observer to ALL elements with the 'initial-hidden' class 
+                //    (This includes all Hero text elements, the Facilities header, and all Stat Cards)
+                document.querySelectorAll('.initial-hidden').forEach(element => {
+                    observer.observe(element);
+                });
+            }
+        }
+
+        // Initialize rendering and the observer when the window loads
+        window.onload = setupScrollAnimations;
+    </script>
+</body>
+
+</html>

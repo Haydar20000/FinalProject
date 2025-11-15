@@ -22,7 +22,6 @@
      /* Teal/Cyan Primary */
      --accent-color: #05483c;
      /* Dark Green/Teal Accent */
-
      /* Text & Background Overrides */
      --light-text: #777;
      --background-color: #ffffff;
@@ -52,6 +51,9 @@
      /* Purple for titles */
  }
 
+
+
+
  body {
      font-family: var(--font-family);
      background-color: var(--background-color);
@@ -79,10 +81,35 @@
 
  /* Set the default font for the entire document ----------------- End */
 
- /* --- CSS Code for All The documents  ------------------------- Start */
- /* Home Section  ----------- start */
+
+ /* Home Section  ----------------------------------------------- start */
+
  .pulse-animation {
      animation: pulse-glow 3s infinite ease-in-out;
+ }
+
+ /* --- Social Media Styling (using Boxicons) --- */
+ .social-media a {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     width: 2.75rem;
+     /* Approx. 44px */
+     height: 2.75rem;
+     background: transparent;
+     border: 2px solid var(--main-color);
+     border-radius: 50%;
+     margin-right: 1rem;
+     transition: all 0.5s ease;
+     color: var(--main-color);
+     font-size: 1.5rem;
+ }
+
+ .social-media a:hover {
+     background: var(--main-color);
+     color: var(--white);
+     box-shadow: 0 0 15px rgba(0, 135, 145, 0.6);
+     transform: translateY(-2px);
  }
 
  /* --- Scroll Entrance Animation (Hidden by default) --- */
@@ -97,6 +124,23 @@
      transform: translateY(0);
  }
 
+ .scroll-delay-1 {
+     transition-delay: 0.1s;
+ }
+
+ .scroll-delay-2 {
+     transition-delay: 0.2s;
+ }
+
+ .scroll-delay-3 {
+     transition-delay: 0.3s;
+ }
+
+ .scroll-delay-4 {
+     transition-delay: 0.4s;
+ }
+
+
  /* Utility classes using the variables */
  .color-main {
      color: var(--main-color);
@@ -106,38 +150,47 @@
      background-color: var(--main-color);
  }
 
-
- /* The circular graphic color - we'll use a slightly lighter version here for the circle effect */
  .circle-bg {
      background-color: var(--north-zone-fill);
  }
 
- /* --- Social Media Styling (using Boxicons) --- */
- .social-media a {
-     display: inline-flex;
-     align-items: center;
-     justify-content: center;
-     width: 3rem;
-     /* Approx. 44px */
-     height: 3rem;
-     background: transparent;
-     border: 2px solid var(--main-color);
-     border-radius: 50%;
-     margin-right: 1rem;
-     transition: all 0.5s ease;
-     color: var(--main-color);
-     font-size: 1.5rem;
+ /* Custom Card Styling */
+ .business-card {
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+     border-bottom: 4px solid var(--main-color);
+     box-shadow: 0 4px 12px var(--default-shadow-color);
  }
 
- .social-media a:hover {
-     background: var(--main-color);
-     color: var(--bg-color);
-     box-shadow: 0 0 15px rgba(0, 135, 145, 0.6);
-     transform: translateY(-2px);
+ .business-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 12px 20px var(--hover-shadow-color);
  }
 
- /* Home Section  ----------- End */
- /* --- CSS Code for All The documents  ------------------------- End */
+ /* Home Section  ----------------------------------------------- End */
+ /* Work Force and Facilities Section  --------------------------------------------- start */
+ /* Custom Script Font Class */
+
+ /* Base state: Hidden and slightly moved down/zoomed out */
+ .initial-hidden {
+     opacity: 0;
+     transform: translateY(30px) scale(0.98);
+ }
+
+
+ .fade-in-up {
+     /* This is the class added by JS to trigger the animation */
+     animation: fade-in-zoom 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+     /* Use CSS variable for staggered delay */
+     animation-delay: var(--animation-delay, 0s);
+ }
+
+ /* Stat Card Hover Effect */
+ .stat-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 15px 30px rgba(0, 135, 145, 0.15);
+ }
+
+ /* Work Force and Facilities Section  ----------------------------------------------- End */
 
 
  /* --- Animation for All The documents  ------------------------- Start */
@@ -157,5 +210,20 @@
      }
  }
 
+
+ /* Work Force and Facilities Animation ---------------------start */
+ @keyframes fade-in-zoom {
+     from {
+         opacity: 0;
+         transform: translateY(30px) scale(0.98);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0) scale(1);
+     }
+ }
+
+ /* Work Force and Facilities Animation ---------------------end */
 
  /* --- Animation for All The documents  ------------------------- End */
