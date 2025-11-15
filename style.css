@@ -192,6 +192,100 @@
 
  /* Work Force and Facilities Section  ----------------------------------------------- End */
 
+ /* OUR STORY (Vision, Mission, Values) Section  ----------------------------------------------- start */
+ /* 1. Container for 3D Perspective (Still needed for layout) */
+ .flip-card-container {
+     perspective: 1000px;
+     will-change: transform, opacity;
+     /* Added overflow hidden to prevent content from stretching during transform */
+     overflow: hidden;
+ }
+
+ /* 2. The Inner Card: Now just a container for positioning */
+ .flip-card-inner {
+     position: relative;
+     width: 100%;
+     height: 100%;
+     text-align: center;
+     /* We remove transform-style: preserve-3d; */
+ }
+
+ /* 3. Front and Back Faces */
+ .flip-card-front,
+ .flip-card-back {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     /* Removed backface-visibility */
+     border-radius: 0.75rem;
+     padding: 2.5rem 2rem;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     transition: all var(--flip-duration) ease-in-out;
+     /* Smooth transition for slide and opacity */
+ }
+
+ .flip-card-front {
+     background-color: var(--card-bg);
+     border: 1px solid #f0f0f0;
+     box-shadow: 0 4px 6px -1px var(--default-shadow), 0 2px 4px -2px var(--default-shadow);
+     color: var(--color01);
+     z-index: 2;
+     /* Default state */
+     opacity: 1;
+     transform: translateY(0);
+ }
+
+ .flip-card-back {
+     /* REMOVED STATIC background-color: var(--main-color); TO ALLOW INLINE STYLES */
+     color: white;
+     box-shadow: 0 12px 20px -5px var(--hover-shadow);
+     /* REMOVED border: 1px solid var(--main-color); TO ALLOW INLINE STYLES */
+     line-height: 1.6;
+
+     /* Hidden state: Starts slightly below and invisible */
+     opacity: 0;
+     transform: translateY(100%);
+     z-index: 1;
+     /* Ensures it is behind the front face initially */
+ }
+
+ /* State for the new Fade-Slide effect on hover */
+ .flip-card-container:hover .flip-card-front {
+     opacity: 0;
+     transform: translateY(-100%);
+     /* Slides up and out */
+ }
+
+ .flip-card-container:hover .flip-card-back {
+     opacity: 1;
+     transform: translateY(0);
+     /* Slides into view */
+ }
+
+ .flip-card-back .card-title {
+     color: #d0f8fb;
+     /* Light accent color for the title */
+     margin-bottom: 1rem;
+ }
+
+ /* Scroll Reveal for Flip Cards */
+ .flip-card-container.initial-hidden {
+     opacity: 0;
+     transform: scale(0.9) translateY(30px);
+     transition: none;
+ }
+
+ .flip-card-container.is-visible {
+     opacity: 1;
+     animation: zoom-and-skew 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+     animation-delay: var(--animation-delay);
+     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+ /* OUR STORY (Vision, Mission, Values) Section  ----------------------------------------------- End */
 
  /* --- Animation for All The documents  ------------------------- Start */
  /* Home Section  */
