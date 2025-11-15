@@ -251,12 +251,166 @@ function renderAllFlipCards() {
     // Start observing all cards
     allCards.forEach(card => observer.observe(card));
 }
-// OUR STORY (Vision, Mission, Values) ------------------------------------end
+//  Organization Structure ------------------------------------start
+// Wait for the DOM content to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+
+    const chartContainer = document.getElementById('Organization_Structure');
+    if (!chartContainer) return; // Safety check
+
+    // Select all company cards that need the staggered animation
+    const companyCards = chartContainer.querySelectorAll('.company-card');
+
+    // ----------------------------------------------------------------------
+    // 1. Scroll-Triggered Staggered Animation Logic
+    // ----------------------------------------------------------------------
+
+    /**
+     * Resets the animation state by removing the 'animated' class from all cards.
+     * This makes them return to their hidden, initial state (defined in CSS),
+     * allowing the animation to "refresh" when scrolled out of view.
+     */
+    function resetChartAnimation() {
+        companyCards.forEach(card => {
+            // Remove the class that triggers the final visible state
+            card.classList.remove('animated');
+        });
+        // Remove the container class, if used for the group title animation
+        chartContainer.classList.remove('animate-ready');
+    }
+
+    /**
+     * Triggers the staggered fade-in animation by adding the 'animated' class
+     * with a small delay between each card.
+     */
+    function triggerChartAnimation() {
+        // Prevent re-triggering if already animated
+        if (chartContainer.classList.contains('animate-ready')) {
+            return;
+        }
+
+        const staggerDelay = 150; // 150 milliseconds delay between each card
+
+        // Mark the container as ready (for any container-level animations you might have)
+        chartContainer.classList.add('animate-ready');
+
+        companyCards.forEach((card, index) => {
+            // Use setTimeout to create the staggered effect
+            setTimeout(() => {
+                // Add the class that triggers the CSS transition (fade-in, move up)
+                card.classList.add('animated');
+            }, index * staggerDelay);
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 2. Intersection Observer (Controller for "Refresh Every Time")
+    // ----------------------------------------------------------------------
+
+    const observerOptions = {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.1 // Triggers when 10% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Section entered view: Trigger the staggered animation
+                triggerChartAnimation();
+            } else {
+                // Section left view: Reset the state for the next scroll (the "refresh" part)
+                resetChartAnimation();
+            }
+        });
+    }, observerOptions);
+
+    // Start watching the organization chart section
+    observer.observe(chartContainer);
+});
+//  Organization Structure ------------------------------------end
+//  Geographical Coverage ------------------------------------start
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('iraq-map.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById('svg-map-placeholder').innerHTML = html;
+
+            // --- NEW JAVASCRIPT FOR INTERACTIVITY ---
+            const mapZones = document.querySelectorAll('.iraq-map-svg path');
+            const legendItems = document.querySelectorAll('.legend-item');
+
+            function highlightElements(zoneClass, add) {
+                // Highlight map paths
+                document.querySelectorAll(`.iraq-map-svg path.${zoneClass}`).forEach(path => {
+                    if (add) {
+                        path.classList.add('highlight-zone');
+                    } else {
+                        path.classList.remove('highlight-zone');
+                    }
+                });
+
+                // Highlight corresponding legend item
+                const legendItem = document.querySelector(`.${zoneClass}-color`).closest('.legend-item');
+                if (legendItem) {
+                    if (add) {
+                        legendItem.classList.add('highlight-active');
+                    } else {
+                        legendItem.classList.remove('highlight-active');
+                    }
+                }
+            }
+
+            // Add event listeners to map zones
+            mapZones.forEach(path => {
+                const zoneClass = Array.from(path.classList).find(cls =>
+                    cls === 'north-zone' || cls === 'middle-zone' ||
+                    cls === 'south-euphrate-zone' || cls === 'south-zone'
+                );
+
+                if (zoneClass) {
+                    path.addEventListener('mouseenter', () => highlightElements(zoneClass, true));
+                    path.addEventListener('mouseleave', () => highlightElements(zoneClass, false));
+                }
+            });
+
+            // Add event listeners to legend items
+            legendItems.forEach(item => {
+                const colorBox = item.querySelector('.color-box');
+                if (colorBox) {
+                    const zoneColorClass = Array.from(colorBox.classList).find(cls =>
+                        cls.endsWith('-zone-color')
+                    );
+
+                    // Convert 'north-zone-color' to 'north-zone'
+                    const zoneClass = zoneColorClass ? zoneColorClass.replace('-color', '') : null;
+
+                    if (zoneClass) {
+                        item.addEventListener('mouseenter', () => highlightElements(zoneClass, true));
+                        item.addEventListener('mouseleave', () => highlightElements(zoneClass, false));
+                    }
+                }
+            });
+
+        })
+        .catch(error => {
+            console.error('Error loading map:', error);
+            document.getElementById('svg-map-placeholder').innerHTML = '<p>Map failed to load.</p>';
+        });
+});
+// Geographical Coverage ------------------------------------end
 
 function renderAllContent() {
     // renderCompanies();
     setupScrollAnimations();
     renderAllFlipCards();
+    triggerChartAnimation();
 }
 // Initialize rendering and the observer when the window loads
 window.onload = renderAllContent;
