@@ -329,6 +329,111 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(chartContainer);
 });
 //  Organization Structure ------------------------------------end
+//  Companies We Represent Section --------------------------start
+
+const companies = [
+    { name: "Jb Pharma", link: "https://jbpharma.com/", logo: "assets/jb-logo-final.png" },
+    { name: "Ilko Pharma", link: "https://www.ilko.com.tr/", logo: "assets/Ilko_Pharma.png" },
+    { name: "SEBBIN SAS", link: "https://www.sebbin.com/", logo: "assets/SEBBIN_SAS.png" },
+    { name: "Cf Pharma", link: "https://www.cfpharma.ie/", logo: "assets/Cf_Pharma.png" },
+    { name: "Korff", link: "https://www.korff.it/en", logo: "assets/KORFF.png" },
+    { name: "Rejuvi", link: "https://shoprejuvi.com/", logo: "assets/rejuvi.png" },
+    { name: "Evolet", link: "https://evolet.in/", logo: "assets/Evolet.png" },
+    { name: "Protech", link: "http://protechbiosystem.com/", logo: "assets/Protech.png" },
+    { name: "Ekseption", link: "https://ekseptionskincare.com/", logo: "assets/Ekseption.png" },
+    { name: "Al Rai", link: "https://alraipharma.com/ar/", logo: "assets/Al_Rai.png" },
+    { name: "Perfect image", link: "https://www.perfectimage.com", logo: "assets/Perfec_image.png" },
+    { name: "Zenith Global Pharma", link: "https://zenithglobalpharma.com/", logo: "assets/Zenith.png" },
+    { name: "Fusion Meso", link: "https://fusionmeso.com/", logo: "assets/Fusion_Meso.png" },
+    { name: "Nithya", link: "https://www.nithya.it/en/-en/", logo: "assets/Nithya.png" },
+    { name: "AlSabah / CamOleum", link: "https://alsabahco.com/ar", logo: "assets/AlSabah_CamOleum.png" },
+];
+
+function createCompanyCard(company, index) {
+    const companyName = company.name;
+    const companyLink = company.link;
+    const companyLogoUrl = company.logo;
+
+    // Stagger delay increased to 0.15s for a smoother wave effect
+    const animationDelay = (index * 0.15) + 's';
+
+    // Using template literals to create the card structure
+    return `
+               <div 
+                   
+                    class="partner-card block p-10 rounded-xl text-center initial-hidden" 
+                    data-index="${index}" 
+                    style="--animation-delay: ${animationDelay};"
+                >
+                    <div class="border-glow-wrapper"></div>
+                    
+                    <a href="${companyLink}" target="_blank" rel="noopener noreferrer" class="relative z-10 block hover:no-underline text-center">
+                        <!-- Logo container size (remains large): Default: w-48 h-32 | Sm/Desktop: sm:w-64 sm:h-40 -->
+                        <div class="w-20 h-20 sm:w-32 sm:h-20 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center border-2 border-gray-300 hover:border-gray-100 p-2 shadow-lg transition duration-300">
+                            <img 
+                                src="${companyLogoUrl}" 
+                                alt="${companyName} Logo" 
+                                class="w-full h-full object-cover"
+                                onerror="this.onerror=null;this.src='https://placehold.co/100x100/eeeeee/333333?text=Logo';"
+                            >
+                        </div>
+
+                       
+                        <h3 class="text-xl font-bold mb-2 text-card-text-color" style="color: var(--card-text-color);">
+                            ${companyName}
+                        </h3>
+                        
+                       
+                        <p class="text-sm font-medium link-text">
+                            Visit Website &rarr;
+                        </p>
+                    </a>
+                </div>
+            `;
+}
+
+/**
+ * Function to render all company cards and set up the Intersection Observer.
+ */
+function renderCompanies() {
+    const gridContainer = document.getElementById('companies-grid');
+    if (!gridContainer) return;
+
+    // Render all cards, passing the index for staggering
+    gridContainer.innerHTML = companies.map((company, index) => createCompanyCard(company, index)).join('');
+
+    // --- Intersection Observer Logic ---
+    const cards = gridContainer.querySelectorAll('.partner-card');
+
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the card is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            const card = entry.target;
+
+            if (entry.isIntersecting) {
+                // Card is visible or coming into view: Start animation
+                card.classList.remove('initial-hidden');
+                card.classList.add('is-visible');
+            } else if (card.classList.contains('is-visible')) {
+                // Card is completely out of view: Reset state to allow animation to run again
+                card.classList.remove('is-visible');
+                card.classList.add('initial-hidden');
+            }
+        });
+    }, observerOptions);
+
+    // Start observing all cards
+    cards.forEach(card => observer.observe(card));
+}
+
+
+
+//  Companies We Represent Section ----------------------------end
 //  Geographical Coverage ------------------------------------start
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -407,10 +512,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // Geographical Coverage ------------------------------------end
 
 function renderAllContent() {
-    // renderCompanies();
+    renderCompanies();
     setupScrollAnimations();
     renderAllFlipCards();
     triggerChartAnimation();
+
 }
 // Initialize rendering and the observer when the window loads
 window.onload = renderAllContent;
