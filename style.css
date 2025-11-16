@@ -26,7 +26,6 @@
      --light-text: #777;
      --background-color: #ffffff;
      --font-family: 'Inter', sans-serif;
-
      /* Component Specifics */
      --card-text-color: #333;
      --card-bg: #ffffff;
@@ -85,7 +84,26 @@
 
  /* Set the default font for the entire document ----------------- End */
 
+ /* header -------------------------------------------------------------- Start */
+ .heder-bar {
+     background-color: var(--south-euphrate-zone-fill);
+     color: var(--text-color);
+ }
 
+ .heder-button {
+     font-size: 1rem;
+     color: var(--bg-color);
+
+ }
+
+ .heder-button:hover {
+     font-weight: bold;
+     color: var(--primary-color);
+     text-decoration: underline;
+ }
+
+
+ /* header -------------------------------------------------------------- End */
  /* Home Section  ----------------------------------------------- start */
 
  .pulse-animation {
@@ -148,6 +166,10 @@
  /* Utility classes using the variables */
  .color-main {
      color: var(--main-color);
+ }
+
+ .text-color-title {
+     color: var(--accent-color);
  }
 
  .bg-main {
@@ -710,6 +732,145 @@
  /* --- Text and Legend Wrapper (Column 2) --- */
 
  /* Geographical Coverage Section -------------------------------------------------------------- End */
+ /* Sales Coverage Section ------------------------------------------------------------ start */
+ .data-coverage-container {
+     max-width: 1200px;
+     margin: 60px auto 40px;
+     padding: 20px;
+     font-family: var(--font-family);
+     color: var(--text-color);
+ }
+
+ .data-title {
+     color: var(--purple-text);
+     font-size: 2.5em;
+     font-weight: 600;
+     text-align: center;
+     margin-bottom: 5px;
+ }
+
+ .data-summary {
+     color: var(--light-text);
+     text-align: center;
+     font-size: 1.8em;
+     margin-bottom: 40px;
+ }
+
+ .charts-wrapper {
+     display: flex;
+     justify-content: space-around;
+     flex-wrap: wrap;
+     gap: 40px;
+ }
+
+ .chart-column {
+     flex: 1;
+     min-width: 300px;
+     max-width: 45%;
+     text-align: center;
+ }
+
+ .column-title {
+     color: var(--purple-text);
+     font-size: 1.7em;
+     font-weight: 600;
+     margin-bottom: 20px;
+ }
+
+ /* --- Donut Chart Styles --- */
+ .donut-chart-container {
+     position: relative;
+     width: 250px;
+     height: 250px;
+     margin: 0 auto 30px;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+     border-radius: 50%;
+ }
+
+ .donut-chart {
+     transform: rotate(-90deg);
+     /* Start the circle at the top */
+     overflow: visible;
+ }
+
+ .donut-chart circle {
+     transition: stroke-dasharray 1s ease-out;
+     /* Enable smooth CSS transition for animation */
+ }
+
+ .no-transition {
+     transition: none !important;
+ }
+
+ .chart-label {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width: 100%;
+     padding: 20px;
+ }
+
+ .chart-label .value-large {
+     font-size: 2em;
+     font-weight: bold;
+     color: var(--text-color);
+     display: block;
+     margin-bottom: 5px;
+ }
+
+ .chart-label .value-total {
+     font-size: .8em;
+     font-weight: bold;
+     color: var(--card-text-color);
+     display: block;
+     line-height: 1.2;
+ }
+
+ .percentage-label {
+     font-size: 1.5em;
+     font-weight: bold;
+     color: var(--primary-color);
+     margin-bottom: 40px;
+ }
+
+ .chart-column:nth-child(2) .percentage-label {
+     color: var(--secondary-color);
+ }
+
+ .bar-charts-group {
+     padding: 0 20px;
+     text-align: left;
+ }
+
+ .bar-chart-item {
+     margin-bottom: 15px;
+ }
+
+ .bar-label {
+     font-size: 1em;
+     font-weight: bold;
+     color: var(--card-text-color);
+     display: block;
+     margin-bottom: 5px;
+ }
+
+ .bar-bg {
+     height: 12px;
+     background-color: #f0f0f0;
+     border-radius: 6px;
+     overflow: hidden;
+ }
+
+ .bar-progress {
+     height: 100%;
+     background-color: var(--bar-color);
+     transition: width 1.5s ease-out;
+     /* Enable smooth CSS transition for animation */
+ }
+
+
+ /* Sales Coverage Section -------------------------------------------------------------- End */
  /* --- Animation for All The documents  ------------------------- Start */
  /* Home Section  */
  /* --- Continuous Pulse Animation for the Circle --- */
@@ -843,4 +1004,15 @@
      }
 
      /* Organization Structure Section --- End */
+
+     .data-title {
+         font-size: 2em;
+
+     }
+
+     .data-summary {
+
+         font-size: 1.3em;
+
+     }
  }

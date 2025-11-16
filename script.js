@@ -1,10 +1,28 @@
 
+
+// Header Code ------------------------------------start 
+const menuButton = document.getElementById('menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = mobileMenu.querySelectorAll('a');
+
+menuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    menuButton.classList.toggle('text-main-blue'); // Optional visual toggle
+});
+
+// Close mobile menu when a link is clicked
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        // Timeout allows the smooth scroll to start before closing the menu
+        setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+            menuButton.classList.remove('text-main-blue');
+        }, 300);
+    });
+});
+// Header Code ------------------------------------end
 // Home Section Code ------------------------------------Start
-/**
-         * Function to set up the scroll entrance animation using Intersection Observer.
-         * When an element tagged with 'scroll-animate' enters the viewport, 
-         * the 'animate-in' class is added, triggering the CSS transition.
-         */
+
 const observerOptions = {
     root: null, // relative to the viewport
     rootMargin: '0px', // no margin
@@ -510,7 +528,174 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 // Geographical Coverage ------------------------------------end
+// Sales Coverage -----------------------------------------start
+document.addEventListener('DOMContentLoaded', function () {
 
+    // --- Utility Functions (Same as before, but ensure they are here) ---
+    function animateNumber(element, target, duration = 1000) {
+        let start = 0;
+        const step = Math.ceil(target / (duration / 16));
+
+        const timer = setInterval(() => {
+            start += step;
+            if (start >= target) {
+                start = target;
+                clearInterval(timer);
+            }
+            element.textContent = start.toLocaleString();
+        }, 16);
+    }
+
+    function animateDonut(container) {
+        const value = parseFloat(container.getAttribute('data-value'));
+        const total = parseFloat(container.getAttribute('data-total'));
+        const percentage = (value / total) * 100;
+        const circumference = 100.53;
+        const progressValue = (percentage / 100) * circumference;
+
+        const progressCircle = container.querySelector('.donut-chart circle:last-child');
+        const targetElement = container.querySelector('.value-large');
+        const percentElement = container.closest('.chart-column').querySelector('.percentage-value');
+
+        // Set the final state, CSS transition handles the animation
+        progressCircle.style.strokeDasharray = `${progressValue}, ${circumference}`;
+
+        // Animate the numbers
+        animateNumber(targetElement, value);
+        animateNumber(percentElement, Math.round(percentage));
+    }
+
+    function animateBars(barGroup) {
+        const bars = barGroup.querySelectorAll('.bar-progress');
+        bars.forEach(bar => {
+            const percent = bar.getAttribute('data-percent');
+            // Set the final state, CSS transition handles the animation
+            bar.style.width = `${percent}%`;
+        });
+    }
+
+    // --- Core Animation Trigger Logic ---
+
+    function resetElements(chartsWrapper) {
+        // Reset Donut Charts
+        chartsWrapper.querySelectorAll('.donut-chart-container').forEach(container => {
+            container.querySelector('.donut-chart circle:last-child').style.strokeDasharray = '0, 100.53';
+            container.querySelector('.value-large').textContent = '0';
+            container.closest('.chart-column').querySelector('.percentage-value').textContent = '0';
+        });
+        // Reset Bar Charts
+        chartsWrapper.querySelectorAll('.bar-progress').forEach(bar => {
+            bar.style.width = '0%';
+        });
+    }
+
+    function triggerAnimations(chartsWrapper) {
+        chartsWrapper.querySelectorAll('.donut-chart-container').forEach(animateDonut);
+        chartsWrapper.querySelectorAll('.bar-charts-group').forEach(animateBars);
+    }
+
+
+    // --- Intersection Observer Setup ---
+
+    const chartsWrapper = document.querySelector('.charts-wrapper');
+
+    if (chartsWrapper) {
+        const observerOptions = {
+            root: null, // relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.2 // Trigger when 20% of the element is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Element is in view, start the animation
+                    triggerAnimations(entry.target);
+                } else {
+                    // Element is out of view, reset the values for next time
+                    resetElements(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(chartsWrapper);
+    }
+
+
+    // --- (Your existing map script should be placed here, untouched) ---
+    fetch('iraq-map.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById('svg-map-placeholder').innerHTML = html;
+
+            // --- Existing JAVASCRIPT FOR MAP INTERACTIVITY ---
+            const mapZones = document.querySelectorAll('.iraq-map-svg path');
+            const legendItems = document.querySelectorAll('.legend-item');
+
+            function highlightElements(zoneClass, add) {
+                // Highlight map paths
+                document.querySelectorAll(`.iraq-map-svg path.${zoneClass}`).forEach(path => {
+                    if (add) {
+                        path.classList.add('highlight-zone');
+                    } else {
+                        path.classList.remove('highlight-zone');
+                    }
+                });
+
+                // Highlight corresponding legend item
+                const legendItem = document.querySelector(`.${zoneClass}-color`).closest('.legend-item');
+                if (legendItem) {
+                    if (add) {
+                        legendItem.classList.add('highlight-active');
+                    } else {
+                        legendItem.classList.remove('highlight-active');
+                    }
+                }
+            }
+
+            // Add event listeners to map zones
+            mapZones.forEach(path => {
+                const zoneClass = Array.from(path.classList).find(cls =>
+                    cls === 'north-zone' || cls === 'middle-zone' ||
+                    cls === 'south-euphrate-zone' || cls === 'south-zone'
+                );
+
+                if (zoneClass) {
+                    path.addEventListener('mouseenter', () => highlightElements(zoneClass, true));
+                    path.addEventListener('mouseleave', () => highlightElements(zoneClass, false));
+                }
+            });
+
+            // Add event listeners to legend items
+            legendItems.forEach(item => {
+                const colorBox = item.querySelector('.color-box');
+                if (colorBox) {
+                    const zoneColorClass = Array.from(colorBox.classList).find(cls =>
+                        cls.endsWith('-zone-color')
+                    );
+
+                    // Convert 'north-zone-color' to 'north-zone'
+                    const zoneClass = zoneColorClass ? zoneColorClass.replace('-color', '') : null;
+
+                    if (zoneClass) {
+                        item.addEventListener('mouseenter', () => highlightElements(zoneClass, true));
+                        item.addEventListener('mouseleave', () => highlightElements(zoneClass, false));
+                    }
+                }
+            });
+
+        })
+        .catch(error => {
+            console.error('Error loading map:', error);
+            document.getElementById('svg-map-placeholder').innerHTML = '<p>Map failed to load.</p>';
+        });
+});
+// Sales Coverage -----------------------------------------End
 function renderAllContent() {
     renderCompanies();
     setupScrollAnimations();
