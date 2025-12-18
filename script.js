@@ -52,37 +52,37 @@ document.querySelectorAll('.scroll-animate').forEach(element => {
 // Data for the Work Force and Facilities section
 const statsData = [
     {
-        icon: "assets/Icon1.png",
+        icon: "assets/icon1.png",
         value: "2",
         title: "Country Offices",
         description: "Strategically located offices to manage operations and client relations across key regions."
     },
     {
-        icon: "assets/Icon4.png",
+        icon: "assets/icon4.png",
         value: "47",
         title: "Trained Staff",
         description: "Employments included within the following departments: management, business support, commercial, operation and supply chain, HR, IT, Administrative, Finance, Regulatory affairs and QC."
     },
     {
-        icon: "assets/Icon3.png",
+        icon: "assets/icon3.png",
         value: "800m²",
         title: "Chilled Warehouses",
         description: "Advanced storage facilities maintaining optimal temperatures for sensitive products, ensuring integrity and compliance."
     },
     {
-        icon: "assets/Icon2.png",
+        icon: "assets/icon2.png",
         value: "3",
         title: "Refrigerated Trucks",
         description: "Dedicated fleet equipped to transport temperature-controlled goods, ensuring cold chain integrity from facility to destination."
     },
     {
-        icon: "assets/Icon5.png",
+        icon: "assets/icon5.png",
         value: "Strong",
         title: "Financial Support",
         description: "Robust financial backing and stable resources ensure operational continuity and support strategic growth initiatives."
     },
     {
-        icon: "assets/Icon6.png",
+        icon: "assets/icon6.png",
         value: "10+",
         title: "Years Experience",
         description: "Over a decade of industry expertise, navigating market complexities and delivering consistent results."
@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const companies = [
     { name: "Jb Pharma", link: "https://jbpharma.com/", logo: "assets/jb-logo-final.png" },
-    { name: "Ilko Pharma", link: "https://www.ilko.com.tr/", logo: "assets/Ilko_Pharma.png" },
+    { name: "vitamin dermima", link: "https://vitamindermina.it/en/", logo: "assets/vitamin_dermima.png" },
     { name: "SEBBIN SAS", link: "https://www.sebbin.com/", logo: "assets/SEBBIN_SAS.png" },
     { name: "Cf Pharma", link: "https://www.cfpharma.ie/", logo: "assets/Cf_Pharma.png" },
     { name: "Korff", link: "https://www.korff.it/en", logo: "assets/KORFF.png" },
@@ -363,7 +363,7 @@ const companies = [
     { name: "Perfect image", link: "https://www.perfectimage.com", logo: "assets/Perfec_image.png" },
     { name: "Zenith Global Pharma", link: "https://zenithglobalpharma.com/", logo: "assets/Zenith.png" },
     { name: "Fusion Meso", link: "https://fusionmeso.com/", logo: "assets/Fusion_Meso.png" },
-    { name: "Nithya", link: "https://www.nithya.it/en/-en/", logo: "assets/Nithya.png" },
+    { name: "Nithya", link: "https://www.nithya.it/en/home-en/", logo: "assets/Nithya.png" },
     { name: "AlSabah / CamOleum", link: "https://alsabahco.com/ar", logo: "assets/AlSabah_CamOleum.png" },
 ];
 
@@ -387,7 +387,7 @@ function createCompanyCard(company, index) {
                     
                     <a href="${companyLink}" target="_blank" rel="noopener noreferrer" class="relative z-10 block hover:no-underline text-center">
                         <!-- Logo container size (remains large): Default: w-48 h-32 | Sm/Desktop: sm:w-64 sm:h-40 -->
-                        <div class="w-20 h-20 sm:w-32 sm:h-20 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center border-2 border-gray-300 hover:border-gray-100 p-2 shadow-lg transition duration-300">
+                        <div class="w-32 h-42 sm:w-32 sm:h-20 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center border-2 border-gray-300 hover:border-gray-100 p-2 shadow-lg transition duration-300">
                             <img 
                                 src="${companyLogoUrl}" 
                                 alt="${companyName} Logo" 

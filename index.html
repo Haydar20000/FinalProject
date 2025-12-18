@@ -23,15 +23,14 @@
             <div class="flex justify-between items-center">
                 <!-- Logo, Title, and Slogan (Styled to match image) -->
                 <div class="flex items-center space-x-3 flex-shrink-0">
-                    <img src="assets/logo.png" alt="Amarji Group Logo" style="width: 120px">
-
+                    <img src="assets/Profile.jpeg" alt="Amarji Group Logo" style="width: 80px ;border-radius: 50%;">
                 </div>
 
                 <!-- Desktop Navigation (lg and up) -->
                 <nav class="hidden lg:flex lg:space-x-4 xl:space-x-6 text-sm font-semibold">
                     <a href="#home" class="heder-button transition duration-200 py-1 px-2 rounded-lg">Home</a>
-                    <a href="#stats" class=" heder-button transition duration-200 py-1 px-2 rounded-lg">Facilities</a>
                     <a href="#about" class="heder-button transition duration-200 py-1 px-2 rounded-lg">About</a>
+                    <a href="#stats" class=" heder-button transition duration-200 py-1 px-2 rounded-lg">Facilities</a>
                     <a href="#organization"
                         class="heder-button transition duration-200 py-1 px-2 rounded-lg">Organization
                         Structure</a>
@@ -62,10 +61,10 @@
             <div class="px-4 pt-2 pb-3 space-y-1 sm:px-6 text-base font-medium">
                 <a href="#home"
                     class="block py-2 px-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-partner-green transition duration-200">Home</a>
-                <a href="#stats"
-                    class="block py-2 px-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-partner-green transition duration-200">Facilities</a>
                 <a href="#about"
                     class="block py-2 px-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-partner-green transition duration-200">About</a>
+                <a href="#stats"
+                    class="block py-2 px-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-partner-green transition duration-200">Facilities</a>
                 <a href="#organization"
                     class="block py-2 px-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-partner-green transition duration-200">Organization
                     Structure</a>
@@ -103,16 +102,13 @@
 
                 <!-- Left Content: Text and Button - ALL ELEMENTS USE SCROLL ANIMATION -->
                 <div class="order-2 lg:order-1">
-
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold color-main mb-6 leading-tight initial-hidden"
+                        style="--animation-delay: 0.15s;font-family: 'Majallab';font-style: italic;font-size: 100px;">
+                        AmarJi Group
+                    </h1>
                     <p class="script-font text-3xl md:text-4xl color-main mb-3 initial-hidden"
                         style="font-size: 60px; --animation-delay: 0s;">Time To Soar
                     </p>
-
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold color-main mb-6 leading-tight initial-hidden"
-                        style="--animation-delay: 0.15s;">
-                        AmarJi Group
-                    </h1>
-
                     <h2 class="text-lg font-semibold text-gray-700 mb-6 initial-hidden"
                         style="--animation-delay: 0.3s;">
                         We are Professional In
@@ -136,7 +132,7 @@
                     <div class="social-media flex mb-8 initial-hidden" style="--animation-delay: 0.6s;">
                         <a href="#"><i class='bx bxl-facebook'></i></a>
                         <a href="#"><i class='bx bxl-instagram'></i></a>
-                        <a href="#"><i class='bx bxl-twitter'></i></a>
+                        <a href="#"><i class='bx bxl-linkedin'></i></a>
                         <a href="#"><i class='bx bxl-youtube'></i></a>
                     </div>
 
@@ -159,22 +155,6 @@
 
             </div>
         </section>
-
-        <!-- Work Force and Facilities Section (Populated by JavaScript) -->
-        <!-- Reduced vertical padding from py-20 md:py-32 to py-16 md:py-24 -->
-        <section class="py-8 md:py-8 w-full bg-white" id="stats">
-            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-12 text-color-title initial-hidden"
-                    style="--animation-delay: 0s;">
-                    Work Force and Facilities
-                </h2>
-
-                <!-- Stat Cards are injected here by JavaScript -->
-                <div id="stats-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 lg:gap-24">
-                </div>
-            </div>
-        </section>
-
         <!-- --- ABOUT SECTION: OUR STORY (Vision, Mission, Values) --- -->
         <section id="about" class="min-h-screen flex flex-col justify-center pt-10 pb-20 px-6 md:px-8 lg:px-12">
             <h2 class="text-3xl md:text-4xl font-extrabold mb-12 text-center text-color-title initial-hidden"
@@ -192,6 +172,22 @@
 
             </div>
         </section>
+
+        <!-- Work Force and Facilities Section (Populated by JavaScript) -->
+        <!-- Reduced vertical padding from py-20 md:py-32 to py-16 md:py-24 -->
+        <section class="py-8 md:py-8 w-full bg-white" id="stats">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-12 text-color-title initial-hidden"
+                    style="--animation-delay: 0s;">
+                    Work Force and Facilities
+                </h2>
+
+                <!-- Stat Cards are injected here by JavaScript -->
+                <div id="stats-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 lg:gap-24">
+                </div>
+            </div>
+        </section>
+
 
         <!-- --- Organization Structure Section --- -->
         <section id="organization">
@@ -398,9 +394,98 @@
     </main>
 
     <!-- FOOTER PLACEHOLDER -->
-    <footer class="mt-8 py-4 text-center text-gray-500 text-xs border-t border-gray-200">
-        &copy; 2024 AmarJi Group. All rights reserved.
+    <footer id="main-footer" class="bg-gray-800 border-t border-blue-700/30 p-10 mt-12 rounded-t-xl shadow-2xl">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- 1. Main Website Contact Information -->
+            <div class="mb-12 pb-8 border-b border-gray-700">
+                <h3 class="text-3xl font-bold color-main mb-4">Amarji Group Headquarters</h3>
+                <div class="text-gray-400 grid md:grid-cols-3 gap-6">
+                    <div>
+                        <p class="font-semibold text-white mb-1">Contact:</p>
+                        <p>Email: info@amarji.co</p>
+                        <p>Phone: +964 7730006578</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-white mb-1">Address:</p>
+                        <p>Iraq - Baghdad </p>
+                        <p>Al-Yarmook</p>
+                    </div>
+                    <div class="md:text-right">
+                        <p class="font-semibold text-white mb-1">Social:</p>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition mr-4">YouTube</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition mr-4">Twitter</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition mr-4">Facebook</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition">Linkdin</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Four Company Information Grid -->
+            <h3 class="text-2xl font-semibold text-white mb-6">Our Subsidiary Companies</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Company 1: AlphaTech Solutions -->
+                <div class="flex flex-col relative">
+                    <h4 class="text-md font-extrabold south-euphrate-zone-fill mb-2">Amarji
+                        Scientific Bureau</h4>
+                    <p class="text-sm text-gray-500 mb-3">Marketing Medicine & Medical Appliances</p>
+                    <ul class="text-gray-400 space-y-1">
+                        <li><span class="font-semibold">Phone:</span>+964 7730006578</li>
+                        <li><span class="font-semibold">Email:</span> info@amarji.co</li>
+                        <li><span class="font-semibold">Location:</span> Baghdad, Iraq</li>
+                    </ul>
+                    <div class="glow-divider absolute right-[-16px] hidden lg:block"></div>
+                </div>
+
+                <!-- Company 2: Beta Finance Group -->
+                <div class="flex flex-col relative">
+                    <h4 class="text-md font-extrabold middle-zone-fill mb-2">Amarji Pharma
+                        Scientific Bureau</h4>
+                    <p class="text-sm text-gray-500 mb-3">Marketing Medicine & Medical Appliances</p>
+                    <ul class="text-gray-400 space-y-1">
+                        <li><span class="font-semibold">Phone:</span>+964 7818741276</li>
+                        <li><span class="font-semibold">Email:</span> infopharma@amarji.co</li>
+                        <li><span class="font-semibold">Location:</span> Baghdad, Iraq</li>
+                    </ul>
+                    <div class="glow-divider absolute right-[-16px] hidden lg:block"></div>
+                </div>
+
+                <!-- Company 3: Gamma Manufacturing -->
+                <div class="flex flex-col relative">
+                    <h4 class="text-md font-extrabold purple-text mb-2">Amarji Company </h4>
+                    <p class="text-sm text-gray-500 mb-3">Trading Medical Appliances</p>
+                    <ul class="text-gray-400 space-y-1">
+                        <li><span class="font-semibold">Phone:</span>+964 7730006578</li>
+                        <li><span class="font-semibold">Support:</span> info@amarji.co</li>
+                        <li><span class="font-semibold">Location:</span> Baghdad, Iraq</li>
+                    </ul>
+                    <div class="glow-divider absolute right-[-16px] hidden lg:block"></div>
+                </div>
+
+                <!-- Company 4: Delta Wellness & Health -->
+                <div class="flex flex-col relative">
+                    <h4 class="text-md font-extrabold text-purple-400 mb-2">Rawa Company</h4>
+                    <p class="text-sm text-gray-500 mb-3">Trading Medical Appliances</p>
+                    <ul class="text-gray-400 space-y-1">
+                        <li><span class="font-semibold">Phone:</span> +962 797070527</li>
+                        <li><span class="font-semibold">Support:</span> Rawa.company@ymail.com</li>
+                        <li><span class="font-semibold">Location:</span> Amman, Jordan</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright / Legal -->
+            <div class="mt-12 pt-6 border-t border-gray-700 text-center text-sm text-gray-500">
+                &copy; <span id="current-year"></span> AmarJi Group. All Rights Reserved.
+            </div>
+
+        </div>
     </footer>
+    <!-- <footer class="mt-8 py-4 text-center text-gray-500 text-xs border-t border-gray-200">
+        &copy; 2024 AmarJi Group. All rights reserved.
+    </footer> -->
     <script src="script.js"></script>
 </body>
 
